@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    //return view('auth.login');
+    //return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -31,7 +31,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth']], function(){
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     Route::get('createemployee',[AdminController::class,'createemployee'])->name('admin.createemployee');
     Route::post('storeemployee',[AdminController::class,'storeemployee'])->name('admin.storeemployee');
-    Route::get('employeereport/{date}',[AdminController::class,'employeereport'])->name('admin.employeereport');
+    Route::get('employeereport',[AdminController::class,'employeereport'])->name('admin.employeereport');
+    Route::get('employeedetails/{email}',[AdminController::class,'employeedetails'])->name('admin.employeedetails');
+    
     
 
     

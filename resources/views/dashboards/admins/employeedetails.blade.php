@@ -7,18 +7,10 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Employee Report</div>
+                    <div class="card-header">Employee Details</div>
                     <div class="card-body">
-                    
-                    <form action=" {{route('admin.employeereport')}} " method="GET" enctype="multipart/form-data">
-                      @csrf
-
-                     <input type="text" name="date" id="date" placeholder="ex:2022-05-20" class="form-control"></br>
-                     <input type="submit" value="See Report" class="btn btn-success"></br>
-                    </form>
-
-                    @foreach ($employeereport->slice(0,1) as $report)
-                      Date:{{$report->date}} <br>
+                    @foreach ($employeedetails->slice(0,1) as $user)
+                      User Name:{{$user->name}} <br>
                     @endforeach 
                         <br/>
                         <br/>
@@ -27,21 +19,18 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>User Name</th>
+                                        <th>Date</th>
                                         <th>Check In</th>
                                         <th>Check Out</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($employeereport as $report)
+                                @foreach($employeedetails as $detail)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $report->name }}</td>
-                                        <td>{{ $report->checkin }}</td>
-                                        <td>{{ $report->checkout }}</td>
-                                        <td>
-                                            <a href="{{route('admin.employeedetails',$report->email)}}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                        </td>
+                                        <td>{{ $detail->date }}</td>
+                                        <td>{{ $detail->checkin }}</td>
+                                        <td>{{ $detail->checkout }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

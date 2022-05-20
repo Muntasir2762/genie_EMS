@@ -34,12 +34,23 @@ class AdminController extends Controller
            return redirect()->route('admin.dashboard');
        }
 
-       public function employeereport($date){
+       public function employeereport(Request $request){
+
+        $date = $request->date;
 
         $employeereport=EmployeeReport::orderBy('date','asc')->where('date',$date)->get();
 
         return view('dashboards.admins.employeereport',compact('employeereport'));
        }
+
+       public function employeedetails($email){
+
+        $employeedetails=EmployeeReport::orderBy('date','asc')->where('email',$email)->get();
+
+        return view('dashboards.admins.employeedetails',compact('employeedetails'));
+       }
+
+       
 
        
 }
